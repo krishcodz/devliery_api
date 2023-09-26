@@ -10,8 +10,10 @@ const client = new DoorDashClient({
 
 const response = await client.createDelivery({
   external_delivery_id: uuidv4(),
-  pickup_address: "test",
-  pickup_phone_number: "test",
-  dropoff_address: "test",
-  dropoff_phone_number: "test",
+  pickup_address: "1000 4th Ave, Seattle, WA, 98104",
+  pickup_phone_number: "+16505555555",
+  dropoff_address: "1201 3rd Ave, Seattle, WA, 98101",
+  dropoff_phone_number: "+16505555555",
 });
+
+console.log(response);
