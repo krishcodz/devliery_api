@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 import { v4 as uuidv4 } from "uuid";
 import "dotenv/config";
 import { DoorDashClient } from "@doordash/sdk";
+import mongoose from "mongoose";
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -63,6 +64,14 @@ app.post("/create-delivery", async (req, res) => {
     feeTotal: feeTotal,
     orderTotal: orderTotal,
   };
+  mongoose.connect("mongodb://127.0.0.1:27017/deliveryapp");
+  const itemSchema = new mongoose.Schema({
+    resp: Object,
+  });
+
+  const Item = mongoose.models.Item || new mongoose.model("Item", itemSchema);
+  const item1 = new Item({ resp: response });
+  item1.save();
   res.send(response);
 });
 
